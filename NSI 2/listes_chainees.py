@@ -7,7 +7,7 @@ class Cellule:
         self.suivant = s
 
 liste = Cellule(42, Cellule(7, Cellule(8, Cellule( 90, None))))
-
+liste2 = Cellule(32, Cellule(77, Cellule(823, Cellule( 9780, None))))
 ###################################################
 #  Longueure d'une liste chainée
 ###################################################
@@ -50,5 +50,10 @@ assert nieme_element(2, liste) == 8, "Ce n'est pas le n-ieme élément"
 #  concaténer deux listes chainées
 ###################################################
 
-def concatenation(l1: Cellule, l2: Cellule):
-    pass
+def concatenation(l1: Cellule, l2: Cellule) -> Cellule:
+    if l1 is None:
+        return l2
+    else:
+        return Cellule(l1.valeur, concatenation(l1.suivant, l2))
+
+liste3 = concatenation(liste, liste2)
