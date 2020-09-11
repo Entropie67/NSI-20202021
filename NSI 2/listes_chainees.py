@@ -36,4 +36,19 @@ assert longueur_itérative(liste) == 4, "la version itérative ne marche pas !"
 ###################################################
 
 def nieme_element(n: int, l: Cellule):
+    """renvoie la n'ième valeur de la liste, les éléments sont numérotés à partir de 0"""
+    if l is None:
+        raise IndexError("Indice invalide")
+    if n == 0:
+        return l.valeur
+    else:
+        return nieme_element(n - 1, l.suivant)
+
+assert nieme_element(2, liste) == 8, "Ce n'est pas le n-ieme élément"
+
+###################################################
+#  concaténer deux listes chainées
+###################################################
+
+def concatenation(l1: Cellule, l2: Cellule):
     pass
