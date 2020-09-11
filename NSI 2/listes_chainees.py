@@ -36,4 +36,4 @@ assert longueur_itérative(liste) == 4, "la version itérative ne marche pas !"
 ###################################################
 
 def nieme_element(n: int, l: Cellule):
-    
+    pass
