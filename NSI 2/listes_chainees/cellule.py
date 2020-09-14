@@ -8,6 +8,16 @@ class Cellule:
 
 liste = Cellule(42, Cellule(7, Cellule(8, Cellule( 90, None))))
 liste2 = Cellule(32, Cellule(77, Cellule(823, Cellule( 9780, None))))
+def affichage(l: Cellule) -> None:
+    """ Fonction qui affiche une liste chainée"""
+    n = 0
+    c = l
+    while c is not None:
+        n += 1
+        print(c.valeur, end="  -> " )
+        c = c.suivant
+    print()
+
 ###################################################
 #  Longueure d'une liste chainée
 ###################################################
@@ -57,3 +67,17 @@ def concatenation(l1: Cellule, l2: Cellule) -> Cellule:
         return Cellule(l1.valeur, concatenation(l1.suivant, l2))
 
 liste3 = concatenation(liste, liste2)
+
+affichage(liste)
+affichage(liste2)
+affichage(liste3)
+
+def renverse(l):
+    r = None
+    c = l
+    while c is not None:
+        r = Cellule(c.valeur, r)
+        c = c.suivant
+    return r
+liste4 = renverse(liste3)
+affichage(liste4)
