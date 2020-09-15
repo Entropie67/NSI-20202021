@@ -6,14 +6,16 @@
 import turtle # Pour l'une ou l'autre fonction
 # Voici trois exemples de fonctions.
 
-
 def damier(n: int, m: int) -> int:
-    pass
-
+    nombre = n * m
+    return nombre
+print(damier(12, 13))
 
 def perimetre_triangle(a: float, b: float, c: float) -> float:
-    pass
+    perimetre = a + b + c
+    return perimetre
 
+print(perimetre_triangle(12, 3, 2))
 
 def triangle_bleu(l: int) -> None:
     """ Procédure permettant de tracer un triangle bleu"""
@@ -21,7 +23,7 @@ def triangle_bleu(l: int) -> None:
     t.fillcolor('blue')
     t.begin_fill()
     for i in range(3):
-        t.forward(100)
+        t.forward(l)
         t.left(120)
     t.end_fill()
     turtle.exitonclick()
@@ -29,7 +31,7 @@ def triangle_bleu(l: int) -> None:
 # Une fonction qui ne retourne rien est appellée une procédure.
 # Ceci dit, en Python, None est retourné par défaut
 
-triangle_bleu(100)
+triangle_bleu(300)
 
 ##############################
 #           EXERCICES        #
