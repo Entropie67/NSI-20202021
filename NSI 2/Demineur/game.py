@@ -36,7 +36,11 @@ for i in range(taille):
 pygame.display.flip()
 run = True
 while run :
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      run = False
+    if event.type == pygame.MOUSEBUTTONDOWN :
+      if pygame.mouse.get_pressed() == (1,0,0) :
+        pos = pygame.mouse.get_pos()
+        print(pos)
 pygame.quit()
