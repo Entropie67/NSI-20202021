@@ -4,8 +4,11 @@ import pygame
 
 LEVEL = {"Facile": 10, "Moyen": 50, "Fou": 100}
 POURCENTAGE_BOMBE = 20
+CASE = 32
+
 
 taille = LEVEL['Facile']
+
 nb_bombe = taille**2 * POURCENTAGE_BOMBE // 100
 position_bombes = set()
 grille = [[0] * taille for i in range(taille)]
@@ -20,7 +23,17 @@ for position in position_bombes:
 
 pprint(grille)
 
+pygame.init()
 fenetre = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Démineur")
+cadre = pygame.image.load("media/cadre.png").convert_alpha()
+cadre = pygame.transform.scale(cadre, (CASE, CASE))
+pygame.draw.rect(fenetre, (225, 190, 231),(0, 0, taille * CASE, taille * CASE))
+for i in range(taille):
+    for j in range(taille):
+        fenetre.blit(cadre, (i * CASE, j* CASE))
+
+pygame.display.flip()
 run = True
 while run :
     for event in pygame.event.get():
