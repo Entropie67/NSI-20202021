@@ -28,6 +28,8 @@ fenetre = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Démineur")
 cadre = pygame.image.load("media/cadre.png").convert_alpha()
 cadre = pygame.transform.scale(cadre, (CASE, CASE))
+bombe = pygame.image.load("media/mine.png").convert_alpha()
+bombe = pygame.transform.scale(bombe, (CASE, CASE))
 pygame.draw.rect(fenetre, (225, 190, 231),(0, 0, taille * CASE, taille * CASE))
 for i in range(taille):
     for j in range(taille):
@@ -39,8 +41,18 @@ while run :
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       run = False
-    if event.type == pygame.MOUSEBUTTONDOWN :
-      if pygame.mouse.get_pressed() == (1,0,0) :
+    if event.type == pygame.MOUSEBUTTONDOWN:
+      if pygame.mouse.get_pressed() == (1, 0, 0):
         pos = pygame.mouse.get_pos()
         print(pos)
+        x = pos[0] // 32
+        y = pos[1] // 32
+        print(f"ligne {y + 1} colonne {x + 1}")
+        if (x, y) in position_bombes:
+            print("BOUUUUUUUUUUUUM !!!")
+            pygame.draw.rect(fenetre, (255, 0, 00), (x * CASE, y * CASE, CASE, CASE))
+            fenetre.blit(bombe, (x * CASE, y * CASE))
+        else:
+            print("SAFE")
+    pygame.display.flip()
 pygame.quit()
