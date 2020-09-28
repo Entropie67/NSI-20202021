@@ -1,10 +1,12 @@
 from pprint import pprint
 from random import randint
 import pygame
+from config import *
+from case import Case
 
 LEVEL = {"Facile": 10, "Moyen": 50, "Fou": 100}
 POURCENTAGE_BOMBE = 20
-CASE = 32
+
 
 
 taille = LEVEL['Facile']
@@ -45,8 +47,8 @@ while run :
       if pygame.mouse.get_pressed() == (1, 0, 0):
         pos = pygame.mouse.get_pos()
         print(pos)
-        colonne = pos[0] // 32
-        ligne = pos[1] // 32
+        colonne = pos[0] // CASE
+        ligne = pos[1] // CASE
         print(f"ligne {ligne + 1} colonne {colonne + 1}")
         if (ligne, colonne) in position_bombes:
             print("BOUUUUUUUUUUUUM !!!")
