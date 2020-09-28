@@ -45,13 +45,13 @@ while run :
       if pygame.mouse.get_pressed() == (1, 0, 0):
         pos = pygame.mouse.get_pos()
         print(pos)
-        x = pos[0] // 32
-        y = pos[1] // 32
-        print(f"ligne {y + 1} colonne {x + 1}")
-        if (x, y) in position_bombes:
+        colonne = pos[0] // 32
+        ligne = pos[1] // 32
+        print(f"ligne {ligne + 1} colonne {colonne + 1}")
+        if (ligne, colonne) in position_bombes:
             print("BOUUUUUUUUUUUUM !!!")
-            pygame.draw.rect(fenetre, (255, 0, 00), (x * CASE, y * CASE, CASE, CASE))
-            fenetre.blit(bombe, (x * CASE, y * CASE))
+            pygame.draw.rect(fenetre, (255, 0, 00), (colonne * CASE, ligne * CASE, CASE, CASE))
+            fenetre.blit(bombe, (colonne * CASE, ligne * CASE))
         else:
             print("SAFE")
     pygame.display.flip()
