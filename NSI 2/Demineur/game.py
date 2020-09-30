@@ -28,18 +28,7 @@ for position in position_bombes:
 
 pprint(grille)
 
-grille_case = []
-x = 0
-for ligne in grille:
-    ligne_case = []
-    y = 0
-    for case in ligne:
-        if case == 0:
-            ligne_case.append(Case(False, x, y))
 
-        y += 1
-    grille_case.append(ligne_case)
-    x += 1
 
 pygame.init()
 fenetre = pygame.display.set_mode((800,600))
@@ -50,9 +39,27 @@ bombe = pygame.image.load("media/mine.png").convert_alpha()
 bombe = pygame.transform.scale(bombe, (CASE, CASE))
 pygame.draw.rect(fenetre, (225, 190, 231),(0, 0, taille * CASE, taille * CASE))
 
+grille_case = []
+x = 0
+for ligne in grille:
+    ligne_case = []
+    y = 0
+    for case in ligne:
+        if case == 0:
+            temp = Case(False, x, y)
+            ligne_case.append(temp)
+        else:
+            temp = Case(True, x, y)
+            ligne_case.append(temp)
+        temp.affichage(fenetre, cadre)
+        y += 1
+    grille_case.append(ligne_case)
+    x += 1
+"""
 for i in range(taille):
     for j in range(taille):
         fenetre.blit(cadre, (i * CASE, j* CASE))
+"""
 
 pygame.display.flip()
 run = True
@@ -66,6 +73,7 @@ while run :
         print(pos)
         colonne = pos[0] // CASE
         ligne = pos[1] // CASE
+        grille_case[ligne][colonne].est_cliquee()
         print(f"ligne {ligne + 1} colonne {colonne + 1}")
         if (ligne, colonne) in position_bombes:
             print("BOUUUUUUUUUUUUM !!!")
