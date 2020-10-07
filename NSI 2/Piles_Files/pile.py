@@ -12,7 +12,7 @@ class Pile:
         self.liste = []
 
     def est_vide(self):
-        return len(self.liste)
+        return len(self.liste) == 0
 
     def empiler(self, v):
         self.liste.append(v)
@@ -21,3 +21,7 @@ class Pile:
         if self.est_vide():
             raise IndexError("Tu dépiles une liste vide ? Serieusement ?")
         return self.liste.pop()
+
+    def __str__(self):
+        return " | ".join([ str(i) for i in self.liste])
+        
