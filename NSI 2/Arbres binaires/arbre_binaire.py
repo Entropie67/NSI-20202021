@@ -1,4 +1,6 @@
 
+# https://pixees.fr/informatiquelycee/n_site/nsi_term_projet_4.html
+
 class ArbreBinaire:
    def __init__(self, valeur):
       self.valeur = valeur
@@ -60,6 +62,8 @@ def affiche(T):
    if T != None:
       return (T.get_valeur(),affiche(T.get_gauche()),affiche(T.get_droit()))
 
+
+
 def hauteur(arbre):
   if arbre is not None:
       return 1 + max(hauteur(arbre.enfant_gauche), hauteur(arbre.enfant_droit))
@@ -67,7 +71,17 @@ def hauteur(arbre):
       return 0
 
 # https://pixees.fr/informatiquelycee/n_site/nsi_term_algo_arbre.html#prefixe
-#def
+def parcours_infixe(arbre):
+   if arbre is not None:
+      x = arbre
+      parcours_infixe(x.enfant_gauche)
+      print(x.valeur, end=" - ")
+      parcours_infixe(x.enfant_droit)
+
+# https://pixees.fr/informatiquelycee/n_site/nsi_term_algo_arbre.html#prefixe
+def parcours_prefixe(arbre):
+   pass
 
 print(affiche(racine))
 print(hauteur(racine))
+parcours_infixe(racine)
