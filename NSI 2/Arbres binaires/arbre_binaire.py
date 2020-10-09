@@ -75,13 +75,54 @@ def parcours_infixe(arbre):
    if arbre is not None:
       x = arbre
       parcours_infixe(x.enfant_gauche)
-      print(x.valeur, end=" - ")
+      print(x.valeur, end=" | ")
       parcours_infixe(x.enfant_droit)
 
 # https://pixees.fr/informatiquelycee/n_site/nsi_term_algo_arbre.html#prefixe
 def parcours_prefixe(arbre):
-   pass
+   if arbre is not None:
+      x = arbre
+      print(x.valeur, end=" | ")
+      parcours_prefixe(x.enfant_gauche)
+      parcours_prefixe(x.enfant_droit)
 
+# https://pixees.fr/informatiquelycee/n_site/nsi_term_algo_arbre.html#suffixe
+
+def parcours_suffixe(arbre):
+   if arbre is not None:
+      x = arbre
+      parcours_suffixe(x.enfant_gauche)
+      parcours_suffixe(x.enfant_droit)
+      print(x.valeur, end=" | ")
+
+# BFS
+# https://pixees.fr/informatiquelycee/n_site/nsi_term_algo_arbre.html#largeur
+# https://fr.wikipedia.org/wiki/Algorithme_de_parcours_en_largeur
+from collections import deque
+def parcours_largeur(arbre):
+   visites = []
+   queue = deque()
+   queue.append(arbre)
+   while queue:
+      noeud = queue.popleft()
+      if noeud.valeur not in visites:
+         visites.append(noeud.valeur)
+      if noeud.enfant_gauche is not None:
+         queue.append(noeud.enfant_gauche)
+      if noeud.enfant_droit is not None:
+         queue.append(noeud.enfant_droit)
+   print(" | ".join(visites))
+
+
+
+
+# DFS
 print(affiche(racine))
 print(hauteur(racine))
 parcours_infixe(racine)
+print()
+parcours_prefixe(racine)
+print()
+parcours_suffixe(racine)
+print("\n\t LARGEUR")
+parcours_largeur(racine)
